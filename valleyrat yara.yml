@@ -1,0 +1,20 @@
+rule ValleyRAT : Remote Access Trojan
+{
+meta:
+	author = "Subhankar Hazra"
+	Date = "2025-03-08"
+	Description = "Usage of MuiCache to Identify malicious DLLs"
+strings:
+	$header = MuiCache
+    $f1 = "FirewallAPI.dll" nocase
+    $f2 = "firewallapi.dll" nocase
+    $f3 = "gpapi.dll" nocase
+    $f4 = "ieframe.dll" nocase
+    $f5 = "netsh.dll" nocase
+    $f6 = "sstpsvc.dll" nocase
+    $f7 = "wifidispaly.dll.dll" nocase
+    $f8 = "windows.storage.dll" nocase
+    $f9 = "wlansvc.dll" nocase
+    $f10 = "zipfldr.dll" nocase
+condition:
+	all of them
