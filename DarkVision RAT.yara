@@ -3,8 +3,8 @@ rule detect_DarkVision RAT: Event Viewer
 	meta:
 	    description = "detect_DarkVision RAT"
 	    author = "Subhankar Hazra"
-        date = "2025-3-17"
-        sample hash = "ef9a8a12b1521b684d5587314033af29d5586e00f8a120fe5f5a2201cb3be482"
+            date = "2025-3-17"
+            sample hash = "ef9a8a12b1521b684d5587314033af29d5586e00f8a120fe5f5a2201cb3be482"
         
 	    
     strings:
