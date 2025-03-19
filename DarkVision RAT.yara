@@ -8,17 +8,17 @@ rule detect_DarkVision RAT: Event Viewer
         
 	    
     strings:
-        $public_key_token = "6f05678fe9123789167"
+        $public_key_token = "6f05678fe9123789167" fullword ascii
                
-        $s1 = "OpenMutex" wide ascii
-        $s2 = "L'wsprintw" wide ascii
-        $s3 = "CoCreateInstance" wide ascii        
-        $s3 = "RAZORSERVER32.EXE" 
-        $s4 = "eventwr.exe"
-        $s5 = "wmic.exe/sdb" ascii wide
+        $s1 = "OpenMutex" fullword ascii
+        $s2 = "wsprintw" fullword ascii
+        $s3 = "CoCreateInstance" fullword ascii        
+        $s3 = "RAZORSERVER32.EXE" fullword wide
+        $s4 = "eventwr.exe" fullword wide
+        $s5 = "wmic.exe" fullword wide
         
         
-        $manifest = "AsInvoker" wide
+        $manifest = "AsInvoker" fullword wide
         
         
     condition:
