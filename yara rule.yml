@@ -1,0 +1,24 @@
+rule SteganosMalware_Activity
+{
+    meta:
+        description = "Detects malware artifacts related to Steganos-based spyware"
+        author = "Subhankar Hazra"
+		date = 2025-04-25
+        version = "1.0"
+        
+
+    strings:
+        $exe1 = "PasswordManager.exe"
+        $exe2 = "OnlineShieldClient.exe"
+        $exe3 = "Safe.exe"
+        $reg1 = "Software\\Steganos\\"
+        $reg2 = "Update\\NextCheck"
+        $crt = "steganosproductsv3.crt"
+        $cfg = "PRODUCT_%S.sxp"
+        $url_funcs = "HttpSendRequestA"
+        $net_funcs = "InternetOpenA"
+        $decoded_val = "79296949"
+
+    condition:
+        any of them
+}
