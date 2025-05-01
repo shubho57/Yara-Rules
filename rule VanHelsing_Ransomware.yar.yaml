@@ -1,0 +1,23 @@
+rule VanHelsing_Ransomware
+{
+    meta:
+        description = "Detects VanHelsing ransomware by ransom note, C2 domains, and debug paths"
+        author = "Subhankar H."
+        date = "2025-04-30"
+        hash = "da81ac8d8b33c133f967b733e9fccfdb69baf5c2031c5b5ad616d4284c3b5411"
+        malware_family = "VanHelsing"
+
+    strings:
+        $ransom_note = "Your network has been breached and all your  files Personal data"
+        $tor1 = "vanhelcbxqt4tqie6fuevfng2bsdtxgc7xslo2yo7nitaacdfrlpxnqd.onion"
+        $tor2 = "vanhelqmjstkvlhrjwzgjzpq422iku6wlggiz5y5r3rmfdeiaj3ljaid.onion"
+        $ticket = "TICKET ID ca11d09d4d234ab8c9a9260c0905a421"
+        $mutex = "Global\\VanHelsing"
+        $libsodium = "libsodiumDRGsysrandom"
+        $pdb_path = "1-locker.pdb"
+        $key_marker = "---key---"
+        $nonce_marker = "---nonce---"
+
+    condition:
+        any of ($tor*) and 3 of ($ransom_note, $ticket, $mutex, $libsodium, $pdb_path, $key_marker, $nonce_marker)
+}
