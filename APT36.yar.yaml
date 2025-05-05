@@ -1,0 +1,25 @@
+rule APT36_Trojan
+{
+    meta:
+        author = "Subhankar H."
+        description = "Detects APT36 malware sample"
+        date = "2025-05-05"
+        malware_family = "APT36"
+        threat_group = "APT36"
+
+    strings:
+        $s1 = "http://toner-digital.com" nocase
+        $s2 = "GetKeyboardState" wide ascii
+        $s3 = "GetAsyncKeyState" wide ascii
+        $s4 = "user32.dll" wide ascii
+        $s5 = "kernel32.dll" wide ascii
+        $s6 = "cmd.exe /c" wide ascii
+        $s7 = "NetUserEnum" wide ascii
+        $s8 = "CreateToolhelp32Snapshot" wide ascii
+        $s9 = "RegOpenKeyExW" wide ascii
+        $s10 = "tasklist" wide ascii
+        $s11 = "cmd /c tasklist" wide ascii
+
+    condition:
+        5 of ($s*)
+}
